@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %} add | {% endblock %}
+{% block content %}
+        
+        <div class="columns">
+            <div class="column is-6 is-offset-3">
+                <form method="post" enctype="multipart/form-data" action="">
+
+                    {% csrf_token %}
+        
+                    <input type="hidden" name="next" value="{{ next }}">
+        
+                    <div class="field">
+                        <label>House Type</label>
+                        <div class="control">
+                            <input type="text" class="input" name="title" id="id_title">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Location</label>
+                        <div class="control">
+                            <input type="text" class="input" name="location" id="id_location">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Price</label>
+                        <div class="control">
+                            <input type="number" class="input" name="price" id="id_price">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Description</label>
+        
+                            <textarea name="summary" id="id_summary" class="input" cols="30" rows="10"></textarea>
+        
+                    </div>
+                    <div class="field">
+                        <label>Contact</label>
+                        <div class="control">
+                            <input type="text" class="input" name="phone" id="id_title" placeholder="phone number">
+                        </div>
+                    </div>
+                    
+                    {% if form.erros %}
+                        <div class="notification is-danger">
+                            <p>Something went worng!</p>
+                        </div>
+                    {% endif %}
+        
+                    <p style="font-size: 12px">Add pictures</p>
+                    {{ imageform.management_form }}
+                    {% for form in imageform %}
+                        {{ form }}
+                    {% endfor %} 
+                    <input type="submit" name="submit" value="Update" class="button is-success" />
+                </form>
+            </div>
+        </div>
+
+{% endblock %}
+
